@@ -1,10 +1,10 @@
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Clínica Médica</b></a>
+    <a href="#"><b>Sistema de Reservas de Citas Odontológicas</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Ingresar como Secretaria</p>
+    <p class="login-box-msg">Ingresar como Gestor Administrativo (Secretarias)</p>
 
     <form method="post">
 

@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="http://localhost/clinica/inicio" class="logo">
+    <a href="http://localhost/ReservasCDental/inicio" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C M</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -26,11 +26,11 @@
 
               if($_SESSION["foto"] == ""){
 
-                echo '<img src="http://localhost/clinica/Vistas/img/defecto.png" class="user-image" alt="User Image">';
+                echo '<img src="http://localhost/ReservasCDental/Vistas/img/defecto.png" class="user-image" alt="User Image">';
 
               }else{
 
-                echo '<img src="http://localhost/clinica/'.$_SESSION["foto"].'" class="user-image" alt="User Image">';
+                echo '<img src="http://localhost/ReservasCDental/'.$_SESSION["foto"].'" class="user-image" alt="User Image">';
 
               }
 
@@ -48,7 +48,7 @@
 
                   <?php
 
-                  echo '<a href="http://localhost/clinica/perfil-'.$_SESSION["rol"].'" class="btn btn-primary btn-flat">Perfil</a>';
+                  echo '<a href="http://localhost/ReservasCDental/perfil-'.$_SESSION["rol"].'" class="btn btn-primary btn-flat">Perfil</a>';
 
                   ?>
                   
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="pull-right">
-                  <a href="http://localhost/clinica/salir" class="btn btn-danger btn-flat">Salir</a>
+                  <a href="http://localhost/ReservasCDental/salir" class="btn btn-danger btn-flat">Salir</a>
                 </div>
               </li>
             </ul>
