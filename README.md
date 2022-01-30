@@ -1,2 +1,2 @@
 # ReservasCitasOdontologo
-Repositorio dle sistema de Citas de un consultorio Odontologico
+Repositorio de Versiones del sistema de Citas de un consultorio Odontologico.
