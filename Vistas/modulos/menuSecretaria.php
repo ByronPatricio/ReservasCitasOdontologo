@@ -14,7 +14,7 @@
         <li>
           <a href="http://localhost/ReservasCDental/doctores">
             <i class="fa fa-user-md"></i>
-            <span>Doctores</span>
+            <span>Odontólogos</span>
           </a>
         </li>
 
