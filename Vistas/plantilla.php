@@ -82,7 +82,13 @@ session_start();
 
       $url = explode("/", $_GET["url"]);
 
-      if($url[0] == "inicio" || $url[0] == "salir" || $url[0] == "perfil-Secretaria" || $url[0] == "perfil-S" || $url[0] == "consultorios" || $url[0] == "E-C" || $url[0] == "doctores" || $url[0] == "pacientes" || $url[0] == "perfil-Paciente" || $url[0] == "perfil-P" || $url[0] == "Ver-consultorios" || $url[0] == "Doctor" || $url[0] == "historial" || $url[0] == "perfil-Doctor" || $url[0] == "perfil-D" || $url[0] == "Citas" || $url[0] == "perfil-Administrador" || $url[0] == "perfil-A" || $url[0] == "secretarias" || $url[0] == "inicio-editar"){
+      if($url[0] == "inicio" || $url[0] == "salir" || $url[0] == "perfil-Secretaria" || 
+      $url[0] == "perfil-S" || $url[0] == "consultorios" || $url[0] == "E-C" || 
+      $url[0] == "doctores" || $url[0] == "pacientes" || $url[0] == "perfil-Paciente" || 
+      $url[0] == "perfil-P" || $url[0] == "Ver-consultorios" || $url[0] == "Doctor" ||
+       $url[0] == "historial" || $url[0] == "perfil-Doctor" || $url[0] == "perfil-D" ||
+       $url[0] == "Citas" || $url[0] == "perfil-Administrador" || $url[0] == "perfil-A" 
+       || $url[0] == "secretarias" || $url[0] == "inicio-editar"){
 
         include "modulos/".$url[0].".php";
 
@@ -184,100 +190,100 @@ session_start();
       
       hiddenDays: [0,6], 
 
-      defaultView: 'agendaWeek',
+defaultView: 'agendaWeek',
 
-      events:[
+events:[
 
-              <?php
+        <?php
 
-                  $columna = null;
-                  $valor = null;
+            $columna = null;
+            $valor = null;
 
-                  $resultado = CitasC::VerCitasC($columna, $valor);
+            $resultado = CitasC::VerCitasC($columna, $valor);
 
-                  foreach ($resultado as $key => $value) {
+            foreach ($resultado as $key => $value) {
 
-                    if($value["id_doctor"] == substr($_GET["url"], 7)){
+              if($value["id_doctor"] == substr($_GET["url"], 7)){
 
-                       echo '{
-                              id: '.$value["id"].',
-                              title:  "'.$value["nombre_paciente"].'",
-                              start:"'.$value["inicio"].'",
-                              end:"'.$value["fin"].'"
-                            },';
+                 echo '{
+                        id: '.$value["id"].',
+                        title:  "'.$value["nombre_paciente"].'",
+                        start:"'.$value["inicio"].'",
+                        end:"'.$value["fin"].'"
+                      },';
 
-                      }else if($value["id_doctor"] == substr($_GET["url"], 6)){
+                }else if($value["id_doctor"] == substr($_GET["url"], 6)){
 
-                       echo '{
-                              id: '.$value["id"].',
-                              title:  "'.$value["nombre_paciente"].'",
-                              start:"'.$value["inicio"].'",
-                              end:"'.$value["fin"].'"
-                            },';
+                 echo '{
+                        id: '.$value["id"].',
+                        title:  "'.$value["nombre_paciente"].'",
+                        start:"'.$value["inicio"].'",
+                        end:"'.$value["fin"].'"
+                      },';
 
-                      }
+                }
 
-                  }
-                 
+            }
+           
 
-              ?>
-
-      ],
-
-       <?php
-
-       if($_SESSION["rol"] == "Paciente"){
-
-          $columna = "id";
-              $valor = substr($_GET["url"], 7);
-
-              $resultado = DoctoresC::DoctorC($columna, $valor);
-             
-              echo 'scrollTime: "'.$resultado["horarioE"].'",
-                      minTime: "'.$resultado["horarioE"].'",
-                      maxTime: "'.$resultado["horarioS"].'",';
-
-       }else if($_SESSION["rol"] == "Doctor"){
-
-          $columna = "id";
-          $valor = substr($_GET["url"], 6);
-
-              $resultado = DoctoresC::DoctorC($columna, $valor);
-             
-              echo 'scrollTime: "'.$resultado["horarioE"].'",
-                      minTime: "'.$resultado["horarioE"].'",
-                      maxTime: "'.$resultado["horarioS"].'",';
-
-       }
-              
         ?>
 
-      dayClick:function(date,jsEvent,view){
+],
 
-        var fecha = date.format();
+ <?php
 
-        var hora2 = ("01:00:00").split(":");
+ if($_SESSION["rol"] == "Paciente"){
 
-        fecha = fecha.split("T");
+    $columna = "id";
+        $valor = substr($_GET["url"], 7);
 
-        var dia = fecha[0];
+        $resultado = DoctoresC::DoctorC($columna, $valor);
+       
+        echo 'scrollTime: "'.$resultado["horarioE"].'",
+                minTime: "'.$resultado["horarioE"].'",
+                maxTime: "'.$resultado["horarioS"].'",';
 
-        var hora = (fecha[1]).split(":");
+ }else if($_SESSION["rol"] == "Doctor"){
 
-        var fff = parseFloat(hora[0]);
-        var ggg = parseFloat(hora2[0]);
+    $columna = "id";
+    $valor = substr($_GET["url"], 6);
 
-        var horaFinal = fff+ggg;
+        $resultado = DoctoresC::DoctorC($columna, $valor);
+       
+        echo 'scrollTime: "'.$resultado["horarioE"].'",
+                minTime: "'.$resultado["horarioE"].'",
+                maxTime: "'.$resultado["horarioS"].'",';
 
-        $('#CitaModal').modal();
-    
-        $('#fechaC').val(dia);
+ }
         
-          $('#horaC').val(fff+":00:00");
+  ?>
 
-           $('#fyhC').val(fecha[0]+" "+fff+":00:00");
+dayClick:function(date,jsEvent,view){
 
-         $('#horaFinC').val(fecha[0]+" "+horaFinal+":00:00");
+  var fecha = date.format();
+
+  var hora2 = ("01:00:00").split(":");
+
+  fecha = fecha.split("T");
+
+  var dia = fecha[0];
+
+  var hora = (fecha[1]).split(":");
+
+  var fff = parseFloat(hora[0]);
+  var ggg = parseFloat(hora2[0]);
+
+  var horaFinal = fff+ggg;
+
+  $('#CitaModal').modal();
+
+  $('#fechaC').val(dia);
+  
+    $('#horaC').val(fff+":00:00");
+
+     $('#fyhC').val(fecha[0]+" "+fff+":00:00");
+
+   $('#horaFinC').val(fecha[0]+" "+horaFinal+":00:00");
         
       }
 
